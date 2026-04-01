@@ -1,0 +1,6 @@
+fastapi==0.135.3
+pwdlib==0.3.0
+pydantic==2.12.5
+pydantic_settings==2.13.1
+PyJWT==2.12.1
+sqlmodel==0.0.37
