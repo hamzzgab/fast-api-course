@@ -7,3 +7,4 @@ PyJWT==2.12.1
 SQLAlchemy==2.0.48
 sqlmodel==0.0.37
 uvicorn==0.42.0
+psycopg2-binary==2.9.11
