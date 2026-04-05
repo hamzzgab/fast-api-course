@@ -4,6 +4,11 @@ from pydantic import EmailStr
 from sqlmodel import Field, SQLModel, Column, TIMESTAMP, text, Relationship
 
 
+class Votes(SQLModel, table=True):
+    post_id: int = Field(foreign_key="posts.id", ondelete="CASCADE", primary_key=True)
+    user_id: int = Field(foreign_key="users.id", ondelete="CASCADE", primary_key=True)
+
+
 class Users(SQLModel, table=True):
     id: int | None = Field(index=True, primary_key=True, default=None)
     email: str = Field(unique=True)
@@ -59,6 +64,11 @@ class PostResponse(PostUpdate):
     created_at: datetime
 
 
+class PostsWithVotes(SQLModel):
+    post: PostResponse
+    num_votes: int
+
+
 class Token(SQLModel):
     access_token: str
     token_type: str
@@ -66,3 +76,8 @@ class Token(SQLModel):
 
 class TokenData(SQLModel):
     id: int | None
+
+
+class Vote(SQLModel):
+    post_id: int
+    dir: int = Field(ge=0, le=1)
